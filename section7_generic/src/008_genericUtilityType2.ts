@@ -21,3 +21,5 @@ readOnlyNames.pop();
 // 첨부된 문서를 통해 유틸리티 타입 목록을 볼 수 있는데 유용하니까 잘 보고 써보자
 // 무언가에 제약조건을 설정해야 하거나 제약 조건을 부분적으로 해제할 때 사용할 수 잇으며,
 // 여러 기능들이 있다
+
+// https://www.typescriptlang.org/docs/handbook/utility-types.html
