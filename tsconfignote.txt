@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "jsx": "react", <- 리액트 할때 쓴다
+    "outDir": "dist", <- 컴파일 된 파일이 들어갈 경로
+    "target": "es6", <- 문법 설정
+    "module": "commonjs", <- 모듈 설정
+    "lib": ["es6"], <- 어떤 라이브러리 쓸지
+  
+  "sourceMap": true
+  },
+  "include": ["src"],
+  "exclude": ["**/node_modules","**/.*/"],
+}
