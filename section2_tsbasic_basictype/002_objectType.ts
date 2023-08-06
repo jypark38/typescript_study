@@ -18,11 +18,11 @@ someObject: {
 , 인지 ; 인지의 차이
 */
 
-console.log(person.name);
+console.log(someObject.name);
 // 존재하지 않는 프로퍼티에 접근하면 에러로 알려준다
-// console.log(person.nickname)
+console.log(someObject.nickname);
 
-const emptyObject: {} = {};
+const emptyObject: {} = { name: "park" };
 // 타입으로 object를 설정해주는것 -> 타입을 {} 로 설정하는 것
 
 /*

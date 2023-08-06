@@ -15,48 +15,41 @@ combine 함수가 인풋에 따라 다르게 합쳐지면서도 반환 결과가
 
 // 이를 위해 resultType 을 문자열타입으로 매개변수로 추가한다
 
-function CombineWithStringResultType(
-  input1: number | string, 
-  input2: number | string, 
-  resultType: string){
+function CombineWithStringResultType(input1: number | string, input2: number | string, resultType: string) {
   let result;
-  if (typeof input1 === 'number' && typeof input2 === 'number'){
+  if (typeof input1 === "number" && typeof input2 === "number") {
     result = input1 + input2;
-  } else{
-    result = input1.toString() + input2.toString()
+  } else {
+    result = input1.toString() + input2.toString();
   }
-  if(resultType === 'as-number'){
+  if (resultType === "as-number") {
     return +result;
-  } else{
+  } else {
     return result.toString();
   }
 }
 
-const combinedAges = CombineWithStringResultType(30, 26, 'as-number')
+const combinedAges = CombineWithStringResultType(30, 26, "as-number");
 
-const combinedStringAges = CombineWithStringResultType('30', '26', 'as-number') // 3026
+const combinedStringAges = CombineWithStringResultType("30", "26", "as-number"); // 3026
 
-const combinedNames = CombineWithStringResultType('Max', 'Anna', 'as-text')
-
+const combinedNames = CombineWithStringResultType("Max", "Anna", "as-text");
 
 // 다른 로직
-function CombineWithStringResultType2(
-  input1: number | string, 
-  input2: number | string, 
-  resultType: string){
+function CombineWithStringResultType2(input1: number | string, input2: number | string, resultType: string) {
   let result;
-  if (typeof input1 === 'number' && typeof input2 === 'number' || resultType === 'as-number'){
+  if ((typeof input1 === "number" && typeof input2 === "number") || resultType === "as-number") {
     result = +input1 + +input2;
-  } else{
-    result = input1.toString() + input2.toString()
+  } else {
+    result = input1.toString() + input2.toString();
   }
 }
 
-const combinedAges2 = CombineWithStringResultType2(30, 26, 'as-number')
+const combinedAges2 = CombineWithStringResultType2(30, 26, "as-number");
 
-const combinedStringAges2 = CombineWithStringResultType2('30', '26', 'as-number') // 56
+const combinedStringAges2 = CombineWithStringResultType2("30", "26", "as-number"); // 56
 
-const combinedNames2 = CombineWithStringResultType2('Max', 'Anna', 'as-text')
+const combinedNames2 = CombineWithStringResultType2("Max", "Anna", "as-text");
 
 // 참고: 숫자로 변환될 수 없는 무언가를 숫자로 바꾸려 하면 NaN이 될거다
 
@@ -72,17 +65,14 @@ enum으로 해결할 수도 있땅
 아래 처럼 정의하면 resultType이 허용되는 문자열은 'as-number', 'as-text' 두 값 뿐이다.
 */
 
-function CombineWithLiteralResultType(
-  input1: number | string, 
-  input2: number | string, 
-  resultType: 'as-number' | 'as-text'){
+function CombineWithLiteralResultType(input1: number | string, input2: number | string, resultType: "as-number" | "as-text") {
   let result;
-  if (typeof input1 === 'number' && typeof input2 === 'number' || resultType === 'as-number'){
+  if ((typeof input1 === "number" && typeof input2 === "number") || resultType === "as-number") {
     result = +input1 + +input2;
-  } else{
-    result = input1.toString() + input2.toString()
+  } else {
+    result = input1.toString() + input2.toString();
   }
 }
 
 // 타입에 어긋나게 쓰면 알려준당
-CombineWithLiteralResultType(1,2,'ab')
+CombineWithLiteralResultType(1, 2, "ab");
