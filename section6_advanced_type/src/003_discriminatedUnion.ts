@@ -2,25 +2,25 @@
 // 타입가드를 쉽게 구현할 수 있게 해주는 유니언타입이다
 // 객체타입으로 작업할 때도 사용할 수 있다.
 
-interface Brid{
-    flyingSpeed: number;
+interface Bird {
+  flyingSpeed: number;
 }
-interface Horse{
-    runningSpeed: number;
+interface Horse {
+  runningSpeed: number;
 }
 
-type Animal = Brid | Horse;
+type Animal = Bird | Horse;
 
 // animal의 속도를 출력하는 함수를 작성하려 하는데 flyingSpeed와 runningSpeed가 구분되어 있는 상황
 // 예) 모든 animal에 flyingSpeed가 없는 상황임
 // 아래처럼 할 수 있다.
-function moveAnimalWithIn(animal: Animal){
-    if ('flyingSpeed' in animal){
-        console.log('Moving with speed: ' + animal.flyingSpeed)
-    }
-    if ('runningSpeed' in animal){
-        console.log('Moving with speed: ' + animal.runningSpeed)
-    }
+function moveAnimalWithIn(animal: Animal) {
+  if ("flyingSpeed" in animal) {
+    console.log("Moving with speed: " + animal.flyingSpeed);
+  }
+  if ("runningSpeed" in animal) {
+    console.log("Moving with speed: " + animal.runningSpeed);
+  }
 }
 // 근데 이런식이면 동물을 많이 입력할 수록 확인해야할 사항이 많아진다
 // 그리고 오타가 나서 작동이 안되는 상황도 있을거다.
@@ -28,32 +28,32 @@ function moveAnimalWithIn(animal: Animal){
 
 // 이때 유니언과 추가 프로퍼티의 일부가 되어야 하는 객체를 인터페이스마다 입력해서 Discriminated Union 을 만들 수 있다.
 // 중요한점은 인터페이스를 구축할때 type은 반드시 문자열 "bird"를 포함해야 한다는 것이다.
-interface DiscriminatedBird{
-    type: 'bird';
-    flyingSpeed: number;
+interface DiscriminatedBird {
+  type: "bird";
+  flyingSpeed: number;
 }
-interface DiscriminatedHorse{
-    type: 'horse';
-    runningSpeed: number;
+interface DiscriminatedHorse {
+  type: "horse";
+  runningSpeed: number;
 }
 
 type DiscriminatedAnimal = DiscriminatedBird | DiscriminatedHorse;
 
 // 이후 스위치문을 이용해서 아래처럼 할 수 있다.
-function moveAnimalWithDiscriminated(animal: DiscriminatedAnimal){
-    let speed;
-    switch (animal.type){
-        case 'bird':
-            speed = animal.flyingSpeed;
-            break
-        case 'horse':
-            speed = animal.runningSpeed;
-            break
-    }
-    console.log('Moving at speed' + speed);
+function moveAnimalWithDiscriminated(animal: DiscriminatedAnimal) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+      break;
+  }
+  console.log("Moving at speed" + speed);
 }
 
-moveAnimalWithDiscriminated({type:'bird', flyingSpeed:10})
+moveAnimalWithDiscriminated({ type: "bird", flyingSpeed: 10 });
 
 // 유니언을 구성하는 모든 객체에 하나의 공통 속성이 있고 그 속성이 객체를 설명한다.
 // 그래서 switch문에서 타입 안정성을 갖추고, 객체에 어떤 속성을 사용할 수 있는지 파악할 수 있다.
